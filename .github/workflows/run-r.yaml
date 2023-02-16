@@ -46,11 +46,11 @@ jobs:
     - id: install-r-dependencies
       name: Install r dependencies
       run: |
-        Rscript InstallPackages.R
+        /usr/local/bin/Rscript InstallPackages.R
 
     - id: run-the-r-script
       name: Runs the r script
       shell: bash
       run: |
-        Rscript Reanalysis.R
+        /usr/local/bin/Rscript Reanalysis.R
         
