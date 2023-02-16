@@ -45,8 +45,7 @@ jobs:
 
     - id: install-r-dependencies
       name: Install r dependencies
-      run: |
-        /usr/local/bin/Rscript InstallPackages.R
+      run: Rscript InstallPackages.R
 
     - id: run-the-r-script
       name: Runs the r script
