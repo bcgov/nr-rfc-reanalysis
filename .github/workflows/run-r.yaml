@@ -42,15 +42,15 @@ jobs:
     #     needs: |
     #       EBImage
     #       curl
-    
+
     - id: install-r-dependencies
       name: Install r dependencies
       run: |
-        r InstallPackages.R
+        Rscript InstallPackages.R
 
     - id: run-the-r-script
       name: Runs the r script
       shell: bash
       run: |
-        r Reanalysis.R
+        Rscript Reanalysis.R
         
