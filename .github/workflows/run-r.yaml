@@ -35,13 +35,18 @@ jobs:
       with:
         r-version: 4.2.1
 
-    - name: install r dependencies
-      uses: r-lib/actions/setup-r-dependencies@v2
-      with:
-        cache-version: 2
-        needs: |
-          EBImage
-          curl
+    # - name: install r dependencies
+    #   uses: r-lib/actions/setup-r-dependencies@v2
+    #   with:
+    #     cache-version: 2
+    #     needs: |
+    #       EBImage
+    #       curl
+    
+    - id: install-r-dependencies
+      name: Install r dependencies
+      run: |
+        r InstallPackages.R
 
     - id: run-the-r-script
       name: Runs the r script
