@@ -71,7 +71,8 @@ day_t5 <- substr(t5,9,10)
 
 
 #path <- "E:\\Shared\\Reanalysis_data\\"
-path <- "V:\\Reanalysis_data\\"
+#path <- "V:\\Reanalysis_data\\"
+path <- "Reanalysis_data"
 
 
 # Tmin
