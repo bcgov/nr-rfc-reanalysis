@@ -1,3 +1,3 @@
-install.packages("BlocManager")
+install.packages("BiocManager")
 BlocManager::install("EBImage")
 install.packages("curl")
