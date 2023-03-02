@@ -1,0 +1,52 @@
+name: Download various soil moisture images/maps
+
+on:
+  push:
+    branches:
+      - "main"
+      - "feat/adding-github-actions"
+  #schedule:
+  # job should run at 9.01 pst which translates to 5pm UTC
+  #  - cron: '1 17 * * *'
+  workflow_dispatch:
+
+jobs:
+  retrieve_images:
+    defaults:
+      run:
+        shell: bash
+    name: 'Download the various soil moisture related images'
+    runs-on: ubuntu-22.04
+    environment: RUN
+    env:
+      OBJ_STORE_BUCKET: ${{ secrets.OBJ_STORE_BUCKET }}
+      OBJ_STORE_SECRET: ${{ secrets.OBJ_STORE_SECRET }}
+      OBJ_STORE_USER: ${{ secrets.OBJ_STORE_USER }}
+      OBJ_STORE_HOST: ${{ secrets.OBJ_STORE_HOST }}
+
+    steps:
+    - uses: actions/checkout@v3
+      id: checkout
+      with:
+       fetch-depth: 0
+
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - id: install_dependencies
+      name: install python dependencies
+      shell: bash
+      run: |
+        pip install --upgrade pip
+        pip install -r python/requirements.txt
+    - id: debug
+      name: debug and list files
+      shell: bash
+      run: |
+        ls -la
+    - id: download_images
+      name: download the soil moisture images
+      shell: bash
+      run: |
+        python python/src/main.py

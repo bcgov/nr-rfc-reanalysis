@@ -76,4 +76,5 @@ dl.get()
 # copy data to object store
 cur_date_str = datetime.datetime.now().strftime("%Y%m%d")
 dest_dir = os.path.join(config.OBJ_STORE_DEST_FOLDER, cur_date_str)
+LOGGER.debug(f"copying files to object storage folder: {dest_dir}")
 object_store_sync.Sync2ObjectStore(src_dir=config.FOLDER, dest_dir=dest_dir)

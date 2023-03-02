@@ -1,39 +1,34 @@
-misc notes re: building docker images
+# Overview
 
-* testing to see if the r-base w/ manual install is smaller than
+misc notes that help when testing various docker/podman options for building
+and running docker images with the R code.
 
-# build
-podman image build -t r-bioc -f Dockerfile.bioc .
+# Actions / Todo
 
-aa) create the directory
-mkdir Reanalysis_data 
+* testing to see if the r-base w/ manual install of bioconductor is smaller than
+  the massive bioconductor image
 
-a) create a volume
-podman volume create rvol
+# Docker / Podman notes
+The following does work, and allows running of the script, however something
+is going wrong with the script as it continuously reports the data is not
+available for all the various sources it attempts to download from.
 
-b) 
-# using a volume
-podman run  --mount 'type=volume,src=rvol,dst=/Reanalysis_data' r-bioc
+Build the image:
+`podman image build -t r-bioc -f Dockerfile.bioc .`
 
-# using directory mount
-podman run  -v ./Reanalysis_data:/Reanalysis_data r-bioc
+Create a volume
+`podman volume create rvol`
 
-# functionality
+Run image with the volume mount
+`podman run  --mount 'type=volume,src=rvol,dst=/Reanalysis_data' r-bioc`
 
-## looks like it downloads various images
+# Description of R script
+The script downloads images from various sources.  Some of the urls provide a
+json file that then identifies the location of an image, other urls are direct
+to image.  All the urls include date ranges.
 
-little complex, is the soil moiture that reads a json file to determine
-what data is available
+An example of a url that returns a json data struct is the soil moisture data
 
 * example url:
 https://charts.ecmwf.int/opencharts-api/v1/products/w_soil_moisture/?valid_time=2023-02-28T00%3A00%3A00Z&base_time=2023-02-28T00%3A00%3A00Z&area=North+America
-
-https://charts.ecmwf.int/opencharts-api/v1/products/w_soil_moisture/?valid_time=2023-03-01T00%3A00%3A00Z&base_time=2023-03-01T00%3A00%3A00Z&area=North+America
-
-## should cache the data in object store
-* ideally every day goes into its own folder
-
-## put together a separate app to display it.
-* could be simple app with date picker, for days with data
-
 
