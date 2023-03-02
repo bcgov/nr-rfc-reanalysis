@@ -16,7 +16,7 @@ logging.config.fileConfig(log_config_path)
 LOGGER = logging.getLogger(__name__)
 
 
-def get_images():
+def get_soil_moisture_images():
     # download the min temp
     minTempConfig = image_download_config.TempMinConfig()
     dl = get_images.GetImageUsingConfig(minTempConfig)
@@ -87,5 +87,5 @@ def upload_2_ostore():
 
 
 if __name__ == "__main__":
-    get_images()
+    get_soil_moisture_images()
     upload_2_ostore()
