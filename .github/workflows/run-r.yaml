@@ -1,5 +1,5 @@
 name: run an R script
-# on:
+on:
 #   push:
 #     branches:
 #       - "main"
