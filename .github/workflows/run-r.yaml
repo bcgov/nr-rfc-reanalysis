@@ -1,9 +1,9 @@
 name: run an R script
-on: 
-  push:
-    branches:
-      - "main"
-      - "feat/adding-github-actions"
+# on:
+#   push:
+#     branches:
+#       - "main"
+#       - "feat/adding-github-actions"
   #schedule:
   #  - cron: '31 13 * * *'
   workflow_dispatch:
@@ -35,6 +35,11 @@ jobs:
       with:
         r-version: 4.2.1
 
+    - id: verify r version
+      name: Install r dependencies
+      run: |
+        r --version
+
     # - name: install r dependencies
     #   uses: r-lib/actions/setup-r-dependencies@v2
     #   with:
@@ -52,4 +57,3 @@ jobs:
       shell: bash
       run: |
         /usr/local/bin/Rscript Reanalysis.R
-        
