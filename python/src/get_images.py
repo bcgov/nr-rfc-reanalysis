@@ -158,6 +158,9 @@ class GetImageUsingConfig:
         else:
             dl = GetImageJson(self.url, self.dest_file)
         LOGGER.debug("getting the image...")
+        if not os.path.exists(os.path.dirname(self.dest_file)):
+            LOGGER.debug(f"creating the directory: {os.path.dirname(self.dest_file)}")
+            os.makedirs(os.path.dirname(self.dest_file))
         dl.get()
 
     def get_dest_file(self, download_config):
