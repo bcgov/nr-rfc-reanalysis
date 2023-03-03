@@ -36,6 +36,8 @@ jobs:
           destination: ./report/soil_moisture/_site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
+        with:
+          path: report/soil_moisture
 
   # Deployment job
   deploy:
