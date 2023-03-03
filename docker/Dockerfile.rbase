@@ -1,0 +1,18 @@
+FROM r-base
+
+# was unable to get the bioconductor package installed in the image
+
+RUN R -e "install.packages('BiocManager')"
+RUN R -e "BiocManager::install('Biobase')"
+RUN R -e "BiocManager::install('EBImage')"
+RUN R -e "install.packages('curl')"
+
+COPY . /usr/local/src/myscripts
+WORKDIR /usr/local/src/myscripts
+
+# RUN "R -e 'install.packages("BiocManager")' &&
+#     R -e 'BiocManager::install("Biobase")' &&
+#     R -e 'BiocManager::install("EBImage")' &&
+#     R -e  'install.packages("curl")'"
+
+CMD ["Rscript", "Reanalysis.R"]

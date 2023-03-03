@@ -37,3 +37,18 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+
+
+python/venv/
+venv/
+__pycache__
+*.pyc
+.env
+data/
+temp.py
+
+
+# markdown / jekyll stuff
+
+report/_site/
+report/.jekyll-cache/

@@ -1,0 +1,30 @@
+version: '3.8'
+volumes:
+  rvol:
+    driver:
+      local
+services:
+  rscript:
+    container_name: r-bioc
+    image: bioconductor/bioconductor_docker
+    # env_file:
+    #   - env-docker-compose.env
+    # healthcheck:
+    #   test: ["CMD-SHELL", "pg_isready -U postgres"]
+    #   interval: 10s
+    #   retries: 3
+    #   start_period: 30s
+    #   timeout: 5s
+    volumes:
+      - rvol:/Reanalysis_data
+    networks:
+      - rnet
+    entrypoint:
+      R -e 'BiocManager::install("EBImage")' &&
+      R -e 'install.packages("curl")'
+      Rscript Reanalysis.R
+
+networks:
+  rnet:
+    driver: bridge
+    attachable: true
