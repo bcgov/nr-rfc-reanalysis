@@ -1,10 +1,10 @@
 name: Download various soil moisture images/maps
 
 on:
-  push:
-    branches:
-      - "main"
-      - "feat/adding-github-actions"
+  # push:
+  #   branches:
+  #     - "main"
+  #     - "feat/adding-github-actions"
   #schedule:
   # job should run at 9.01 pst which translates to 5pm UTC
   #  - cron: '1 17 * * *'
