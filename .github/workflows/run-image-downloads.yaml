@@ -5,9 +5,9 @@ on:
   #   branches:
   #     - "main"
   #     - "feat/adding-github-actions"
-  #schedule:
   # job should run at 9.01 pst which translates to 5pm UTC
-  #  - cron: '1 17 * * *'
+  schedule:
+   - cron: '1 17 * * *'
   workflow_dispatch:
 
 jobs:
