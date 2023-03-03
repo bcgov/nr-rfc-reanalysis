@@ -32,12 +32,12 @@ jobs:
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
-          source: ./report/soil_moisture
-          destination: ./report/soil_moisture/_site
+          source: ./report/soil_moisture/
+          destination: ./report/soil_moisture/_site/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: report/soil_moisture
+          path: report/soil_moisture/
 
   # Deployment job
   deploy:
