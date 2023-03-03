@@ -46,3 +46,9 @@ __pycache__
 .env
 data/
 temp.py
+
+
+# markdown / jekyll stuff
+
+report/_site/
+report/.jekyll-cache/

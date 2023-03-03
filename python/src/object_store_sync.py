@@ -25,3 +25,6 @@ class Sync2ObjectStore:
                 LOGGER.debug(f"copying {src_file_full_path} to {dest_file_full_path}")
                 self.ostore.putObject(destPath=dest_file_full_path,
                                       localPath=src_file_full_path)
+                LOGGER.debug("making object public")
+                self.ostore.setPublicPermissions(objectName=dest_file_full_path)
+
