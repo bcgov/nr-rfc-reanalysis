@@ -19,7 +19,7 @@ LOGGER = logging.getLogger(__name__)
 class Main:
     def __init__(self):
         vantz = pytz.timezone('America/Vancouver')
-        self.cur_date_str = datetime.datetime.now(pytz=vantz).strftime("%Y%m%d")
+        self.cur_date_str = datetime.datetime.now(vantz).strftime("%Y%m%d")
         self.dest_dir = os.path.join(config.OBJ_STORE_DEST_FOLDER, self.cur_date_str)
         self.ostore = object_store_sync.Sync2ObjectStore(src_dir=config.FOLDER,
                                                          dest_dir=self.dest_dir)
