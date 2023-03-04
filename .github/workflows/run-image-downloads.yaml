@@ -66,5 +66,6 @@ jobs:
         file=report/soil_moisture/report_${now}.markdown
         git add $file
         git commit -m "Adding new report for $now"
+        git push origin main
 
 
