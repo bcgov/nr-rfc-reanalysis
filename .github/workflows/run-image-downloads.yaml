@@ -1,9 +1,8 @@
-name: Download various soil moisture images/maps
+name: GetFiles
 
 on:
-  # push:
-  #   branches:
-  #     - "main"
+  push:
+    branches: ["main"]
   #     - "feat/adding-github-actions"
   # job should run at 9.01 pst which translates to 5pm UTC
   schedule:
@@ -50,3 +49,19 @@ jobs:
       shell: bash
       run: |
         python python/src/main.py
+    - id: generate_report
+      name: create the report file
+      shell: bash
+      run: |
+        python python/src/create_report.py
+
+    - name: Commit report files
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        now=$(date +'%Y-%m-%d')
+        file=report/soil_moisture/report_${now}.markdown
+        git add $file
+        git commit -m "Adding new report for $now"
+
+
