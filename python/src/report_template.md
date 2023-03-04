@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Report for today
+title: Report for {date_string}
 nav_order: 9
 has_children: false
 nav_exclude: false
@@ -31,5 +31,3 @@ Report for the date {{ 'now' | date: "%Y" }}
 ## *120 Hour Accumulated Precipitation*
 ![image](https://nrs.objectstore.gov.bc.ca/rfcdata/RFC_REPORTING/soil_moisture/summary_data/20230302/120-hour_accumulated_P_ECMWF.png)
 
-
--------------------------------------------------------

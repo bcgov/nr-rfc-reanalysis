@@ -124,6 +124,9 @@ class ObjectStoreUtil:
         :return: list of the object names in the bucket
         :rtype: list
         """
+        # TODO: the prefix cannot start with a '/', should check that
+        # TODO: potentially create an arg that states the prefix is a dir, and then make sure that it ends with a '/' character
+
         objects = self.minIoClient.list_objects(
             self.objStoreBucket,
             recursive=recursive,
