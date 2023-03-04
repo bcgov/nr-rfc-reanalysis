@@ -53,12 +53,15 @@ jobs:
       name: create the report file
       shell: bash
       run: |
+        git branch -a
         python python/src/create_report.py
 
     - name: Commit report files
       run: |
+        git branch -a
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
+        export TZ=America/Vancouver
         now=$(date +'%Y-%m-%d')
         file=report/soil_moisture/report_${now}.markdown
         git add $file

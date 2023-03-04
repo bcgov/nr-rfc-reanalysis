@@ -9,6 +9,7 @@ import os
 
 import config
 import image_download_config
+import pytz
 
 log_config_path = os.path.join(os.path.dirname(__file__), "..", "config", "logging.config")
 logging.config.fileConfig(log_config_path)
@@ -62,7 +63,8 @@ class CreateReport:
         :return: formatted string for current date Y-m-d
         """
         if self.cur_date is None:
-            self.cur_date = datetime.datetime.now()
+            vantz = pytz.timezone('America/Vancouver')
+            self.cur_date = datetime.datetime.now(vantz)
         format_str = "%Y-%m-%d"
         if nodash:
             # remove dashes from date format string
