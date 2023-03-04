@@ -15,77 +15,30 @@ logging.config.fileConfig(log_config_path)
 
 LOGGER = logging.getLogger(__name__)
 
-
-def get_soil_moisture_images():
-    # download the min temp
-    minTempConfig = image_download_config.TempMinConfig()
-    dl = get_images.GetImageUsingConfig(minTempConfig)
-    dl.get()
-
-    # download the max temp
-    maxTempConfig = image_download_config.TempMaxConfig()
-    dl = get_images.GetImageUsingConfig(maxTempConfig)
-    dl.get()
-
-    precip_30day_config = image_download_config.Precip_mddb2_30day()
-    dl = get_images.GetImageUsingConfig(precip_30day_config)
-    dl.get()
-
-    precip_90day_config = image_download_config.Precip_mddb2_90day()
-    dl = get_images.GetImageUsingConfig(precip_90day_config)
-    dl.get()
-
-    precip_180day_config = image_download_config.Precip_mddb2_180day()
-    dl = get_images.GetImageUsingConfig(precip_180day_config)
-    dl.get()
-
-    soil_moisture_ECMWF_l1_config = image_download_config.Soil_moisture_l1()
-    dl = get_images.GetImageUsingConfig(soil_moisture_ECMWF_l1_config)
-    dl.get()
-
-    Soil_moisture_l1to3 = image_download_config.Soil_moisture_l1to3()
-    dl = get_images.GetImageUsingConfig(Soil_moisture_l1to3)
-    dl.get()
-
-    wecwf_24hr_config = image_download_config.WECWF_24hr_config()
-    dl = get_images.GetImageUsingConfig(wecwf_24hr_config)
-    dl.get()
-
-    wecwf_48hr_config = image_download_config.WECWF_48hr_config()
-    dl = get_images.GetImageUsingConfig(wecwf_48hr_config)
-    dl.get()
-
-    wecwf_72hr_config = image_download_config.WECWF_72hr_config()
-    dl = get_images.GetImageUsingConfig(wecwf_72hr_config)
-    dl.get()
-
-    wecwf_96hr_config = image_download_config.WECWF_96hr_config()
-    dl = get_images.GetImageUsingConfig(wecwf_96hr_config)
-    dl.get()
-
-    wecwf_120hr_config = image_download_config.WECWF_120hr_config()
-    dl = get_images.GetImageUsingConfig(wecwf_120hr_config)
-    dl.get()
-
-    ncep_soil_moisture_0to10cm = image_download_config.NCEP_Soil_moisture_0to10cm_config()
-    dl = get_images.GetImageUsingConfig(ncep_soil_moisture_0to10cm)
-    dl.get()
-
-    ncep_soil_moisture_10to100cm = image_download_config.NCEP_Soil_moisture_10to100cm_config()
-    dl = get_images.GetImageUsingConfig(ncep_soil_moisture_10to100cm)
-    dl.get()
+class Main:
+    def __init__(self):
+        self.cur_date_str = datetime.datetime.now().strftime("%Y%m%d")
+        self.dest_dir = os.path.join(config.OBJ_STORE_DEST_FOLDER, self.cur_date_str)
+        self.ostore = object_store_sync.Sync2ObjectStore(src_dir=config.FOLDER,
+                                                         dest_dir=self.dest_dir)
 
 
-def upload_2_ostore():
-    # copy data to object store
-    cur_date_str = datetime.datetime.now().strftime("%Y%m%d")
-    dest_dir = os.path.join(config.OBJ_STORE_DEST_FOLDER, cur_date_str)
-    LOGGER.debug(f"copying files to object storage folder: {dest_dir}")
-    LOGGER.debug(f"src folder: {config.FOLDER}")
-    ostore = object_store_sync.Sync2ObjectStore(src_dir=config.FOLDER, dest_dir=dest_dir)
-    ostore.sync()
+    def get_soil_moisture_images(self):
+        todays_files = self.ostore.get_todays_files()
+        LOGGER.debug(f"todays files: {todays_files}")
+        for config in image_download_config.ALL_CONFIG_CLASS_LIST:
+            if config.output_image_file not in todays_files:
+                dl = get_images.GetImageUsingConfig(config)
+                dl.get()
+
+    def upload_2_ostore(self):
+        # copy data to object store
+        LOGGER.debug(f"copying files to object storage folder: {self.dest_dir}")
+        LOGGER.debug(f"src folder: {config.FOLDER}")
+        self.ostore.sync()
 
 
 if __name__ == "__main__":
-    get_soil_moisture_images()
-    upload_2_ostore()
+    main = Main()
+    main.get_soil_moisture_images()
+    main.upload_2_ostore()
