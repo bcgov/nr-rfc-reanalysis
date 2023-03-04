@@ -21,6 +21,35 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  createreport:
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    - id: install_dependencies
+      name: install python dependencies
+      shell: bash
+      run: |
+        pip install --upgrade pip
+        pip install -r python/requirements.txt
+    - id: download_images
+      name: download the soil moisture images
+      shell: bash
+      run: |
+        python python/src/create_report.py
+    - name: Commit files
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        now=$(date +'%Y-%m-%d')
+        file=report/soil_moisture/report_${now}.markdown
+        git add $file
+        git commit -m "Adding new report for $now"
+
   # Build job
   build:
     runs-on: ubuntu-22.04

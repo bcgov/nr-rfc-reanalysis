@@ -16,6 +16,21 @@ class Sync2ObjectStore:
         self.destDir = dest_dir
         self.ostore = ObjectStore.ObjectStoreUtil()
 
+    def get_todays_files(self):
+        destdir = self.destDir
+        if destdir[0] == '/':
+            destdir = destdir[1:]
+        if destdir[-1] != '/':
+            destdir = destdir + '/'
+        current_files = self.ostore.listObjects(
+            inDir=destdir,
+            returnFileNamesOnly=True,
+            recursive=False)
+        #LOGGER.debug(f"current files: {current_files}")
+        current_files_no_path = [os.path.basename("/" + x) for x in current_files]
+        LOGGER.debug(f"current_files_no_path: {current_files_no_path}")
+        return current_files_no_path
+
     def sync(self):
         src_file_list = os.listdir(self.srcDir)
         for src_file in src_file_list:
@@ -28,3 +43,8 @@ class Sync2ObjectStore:
                 LOGGER.debug("making object public")
                 self.ostore.setPublicPermissions(objectName=dest_file_full_path)
 
+# if __name__ == '__main__':
+#     dir = "/RFC_REPORTING/soil_moisture/summary_data/20230302"
+#     sync = Sync2ObjectStore(src_dir='/home/kjnether/junk', dest_dir=dir)
+#     cur_files = sync.get_todays_files()
+#     print(cur_files)

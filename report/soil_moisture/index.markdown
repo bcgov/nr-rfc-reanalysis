@@ -3,14 +3,16 @@
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
 layout: default
-title: Soil Moiture Report
+title: Overview
 nav_order: 1
-has_children: false
+has_children: true
 has_toc: false
+child_nav_order: reversed
 ---
 
 # Overview
 
-A report that pulls together output from various soil moisture models
+Plots / Maps are assembed from the various sources and tied together
+into reports daily
 
 -------------------------------------------------------
