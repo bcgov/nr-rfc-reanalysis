@@ -1,0 +1,83 @@
+---
+title : Report for 2024-09-17
+layout : default
+nav_order : 9
+has_children : false
+nav_exclude : false
+has_toc : false
+parent : Overview
+---
+
+# Accumulated Precipitation
+
+Report for the date 2024-09-17
+
+## *CPC minimum Temperature*
+
+![image](https://nrs.objectstore.gov.bc.ca/rfcdata/RFC_REPORTING/soil_moisture/summary_data/20240917/Daily_MinT_CPC.png)
+
+
+## *CPC maxium temperature*
+
+![image](https://nrs.objectstore.gov.bc.ca/rfcdata/RFC_REPORTING/soil_moisture/summary_data/20240917/Daily_MaxT_CPC.png)
+
+
+## *Daily Precipitation - 30 days*
+
+![image](https://nrs.objectstore.gov.bc.ca/rfcdata/RFC_REPORTING/soil_moisture/summary_data/20240917/Daily_Precipitation_30-day_mm_per_day_CPC.png)
+
+
+## *Daily Precipitation - 90 days*
+
+![image](https://nrs.objectstore.gov.bc.ca/rfcdata/RFC_REPORTING/soil_moisture/summary_data/20240917/Daily_Precipitation_90-day_mm_per_day_CPC.png)
+
+
+## *Daily Precipitation - 180 days*
+
+![image](https://nrs.objectstore.gov.bc.ca/rfcdata/RFC_REPORTING/soil_moisture/summary_data/20240917/Daily_Precipitation_180-day_mm_per_day_CPC.png)
+
+
+## *Soil Moisture level 1*
+
+![image](https://nrs.objectstore.gov.bc.ca/rfcdata/RFC_REPORTING/soil_moisture/summary_data/20240917/Soil_level1_ECMWF.png)
+
+
+## *Soil Moisture level 1-3*
+
+![image](https://nrs.objectstore.gov.bc.ca/rfcdata/RFC_REPORTING/soil_moisture/summary_data/20240917/Soil_level1-3_ECMWF.png)
+
+
+## *24 Hour Accumulated Precipitation*
+
+![image](https://nrs.objectstore.gov.bc.ca/rfcdata/RFC_REPORTING/soil_moisture/summary_data/20240917/24-hour_accumulated_P_ECMWF.png)
+
+
+## *48 Hour Accumulated Precipitation*
+
+![image](https://nrs.objectstore.gov.bc.ca/rfcdata/RFC_REPORTING/soil_moisture/summary_data/20240917/48-hour_accumulated_P_ECMWF.png)
+
+
+## *72 Hour Accumulated Precipitation*
+
+![image](https://nrs.objectstore.gov.bc.ca/rfcdata/RFC_REPORTING/soil_moisture/summary_data/20240917/72-hour_accumulated_P_ECMWF.png)
+
+
+## *96 Hour Accumulated Precipitation*
+
+![image](https://nrs.objectstore.gov.bc.ca/rfcdata/RFC_REPORTING/soil_moisture/summary_data/20240917/96-hour_accumulated_P_ECMWF.png)
+
+
+## *120 Hour Accumulated Precipitation*
+
+![image](https://nrs.objectstore.gov.bc.ca/rfcdata/RFC_REPORTING/soil_moisture/summary_data/20240917/120-hour_accumulated_P_ECMWF.png)
+
+
+## *Soil Moisture 0 - 10 cm*
+
+![image](https://nrs.objectstore.gov.bc.ca/rfcdata/RFC_REPORTING/soil_moisture/summary_data/20240917/Soil_0-10cm_NCEP1.png)
+
+
+## *Soil Moisture 10 - 100 cm*
+
+![image](https://nrs.objectstore.gov.bc.ca/rfcdata/RFC_REPORTING/soil_moisture/summary_data/20240917/Soil_10-100cm_NCEP1.png)
+
